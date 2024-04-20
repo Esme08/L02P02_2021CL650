@@ -1,4 +1,5 @@
 ﻿using L02P02_2021CL650.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc;
 
 namespace L02P02_2021CL650.Controllers
@@ -7,9 +8,9 @@ namespace L02P02_2021CL650.Controllers
     {
         private readonly LibreriaDbContext _LibreriaDbContext;
 
-        public ClientesController(LibreriaDbContext equiposDbContext)
+        public ClientesController(LibreriaDbContext libreriaDbContext)
         {
-            _LibreriaDbContext = equiposDbContext;
+            _LibreriaDbContext = libreriaDbContext;
         }
 
         public IActionResult Index()
