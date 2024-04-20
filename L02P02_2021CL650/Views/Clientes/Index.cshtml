@@ -1,0 +1,114 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Formulario";
+    IEnumerable<string> Depas = new List<string> { "Ahuachapán", "Santa Ana", "Sonsonate", "San Salvador" };
+}
+
+<div class="text-light" style="background-color: cadetblue; text-align:center;">
+    <h3>Creación de Usuarios</h3>
+    <p>Ingrese los datos solicitados</p>
+</div>
+<div>
+
+    <form asp-action="CrearClientes">
+        @*Inicio del formulario*@
+
+        <div class="form-group row mb-4">
+
+            <div class="col-sm-2">
+                @Html.Label("lblNombre", "Nombre")
+            </div>
+            <div class="col-sm-4">
+                @Html.TextBox("nombre", "", new { @class = "form-control" })
+            </div>
+            <div class="col-sm-2">
+                @Html.Label("lblApellido", "Apellido")
+            </div>
+            <div class="col-sm-4">
+                @Html.TextBox("apellido", "", new { @class = "form-control" })
+            </div>
+            <div class="col-sm-2">
+                @Html.Label("lblEmail", "Email")
+            </div>
+            <div class="col-sm-10">
+                @Html.TextBox("email", "", new { @class = "form-control" })
+            </div>
+            <div class="col-sm-2">
+                @Html.Label("lblDireccion", "Direccion")
+            </div>
+            <div class="col-sm-10">
+                @Html.TextBox("direccion", "", new { @class = "form-control" })
+            </div>
+
+            <div class="col-sm-2">
+
+                @Html.Label("lblFecha", "Fecha")
+                @Html.TextBox("created_at", DateTime.Now.ToString(), new { @class = "form-control" })
+
+            </div>
+
+            <div class="form-group row mb-4">
+                <div class="col-sm-2"></div>
+                <div>
+                    <input type="submit" class="btn btn-primary" value="Guardar" />
+                </div>
+            </div>
+
+           @*  <div class="col-sm-2">
+                @Html.Label("lblDepartamento", "Departamento:")
+            </div>
+            <div class="col-sm-4">
+                @Html.DropDownList("Direccion", new SelectList(Depas),"Seleccione un departamento", new { @class = "form-control" })
+            </div>
+
+            <div class="col-sm-4">
+                @Html.Label("lblGenero", "Género")
+            </div>
+            <div class="col-sm-4">
+                @Html.RadioButton("Genero", "Masculino", true, new { id = "masculino" })
+                Masculino
+            </div>
+            <div class="col-sm-4">
+                @Html.RadioButton("Genero", "Femenino", false, new { id = "femenino" })
+                Femenino
+            </div> *@
+
+              
+            
+            <table class="table table-striped">
+
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Email</th>
+                        <th>Dirección</th>
+                        <th>Fecha de creacion</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach (var Cliente in (IEnumerable<dynamic>)ViewData["ListaClientes"])
+                    {
+                        <tr>
+                            <td>@Cliente.id</td>
+                            <td>@Cliente.nombre</td>
+                            <td>@Cliente.apellido</td>
+                            <td>@Cliente.email</td>
+                            <td>@Cliente.direccion</td>
+                            <td>@Cliente.created_at</td>
+                        </tr>
+                    }
+
+                </tbody>
+
+            </table> 
+        </div>
+
+        @*Fin del formulario*@
+    </form>
+
+</div>
